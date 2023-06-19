@@ -8,3 +8,5 @@ This is a genmon script to query and display weather data from wttr.in (https://
 <b>Screenie:</b>
 
 ![Screenshot of genmon plugin showing weather tooltip](tooltip.png)
+
+![Screenshot of genmon plugin showing on_click output](on_click.png)
