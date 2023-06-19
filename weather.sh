@@ -7,8 +7,8 @@
 ########################################################################################################################
 ### CONFIGURATION - CHANGE THESE VALUES TO SUIT
 SITE="Whitby"               # Location text to display in tooltip
-LATITUDE="43.8975"                      
-LONGITUDE="-78.9429"
+LATITUDE="43.897"                      
+LONGITUDE="-78.951"
     #CLICK_COMMAND="xfce4-terminal -H --geometry=126x41 -T Weather -x curl -s wttr.in/$LATITUDE,$LONGITUDE"
 CLICK_COMMAND="xdotool key F12"
 
