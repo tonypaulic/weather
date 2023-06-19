@@ -5,3 +5,6 @@ This is a genmon script to query and display weather data from wttr.in (https://
 
 <b>Note:</b> depending on the font your are using, you may need to adjust the number of "\t" (tabs) in the tooltip string to get the readings to line up properly.
 
+<b>Screenie:</b>
+
+![Screenshot of genmon plugin showing weather tooltip](tooltip.png)
