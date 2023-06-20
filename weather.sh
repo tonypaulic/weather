@@ -6,11 +6,12 @@
 
 ########################################################################################################################
 ### CONFIGURATION - CHANGE THESE VALUES TO SUIT
-SITE="Whitby"               # Location text to display in tooltip
+SITE="Whitby"                       # Location text to display in tooltip
 LATITUDE="43.8800"                      
 LONGITUDE="-78.9406"
+CLICK_COMMAND="xdotool key F12"     # what executes when you click on plugin - options below
     #CLICK_COMMAND="xfce4-terminal -H --geometry=126x41 -T Weather -x curl -s wttr.in/$LATITUDE,$LONGITUDE"
-CLICK_COMMAND="xdotool key F12"
+
 
 ########################################################################################################################
 ### SCRIPT GLOBALS
