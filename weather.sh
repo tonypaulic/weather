@@ -40,19 +40,19 @@ OUT=( $(curl -s wttr.in/$LATITUDE,$LONGITUDE?m\&format="%x\n%c\n%h\n%t\n%f\n%w\n
 WEATHERSYMBOL=${OUT[@]:0:1}
 WEATHERICON=${OUT[@]:1:1}
 HUMIDITY=${OUT[@]:2:1}
-TEMPERATURE=$(strip "${OUT[@]:3:1}")
-FEELSLIKE=$(strip "${OUT[@]:4:1}")
+TEMPERATURE=$(strip ${OUT[@]:3:1})
+FEELSLIKE=$(strip ${OUT[@]:4:1})
 WIND=${OUT[@]:5:1}
 LOCATION=${OUT[@]:6:1}
 MOONPHASE=${OUT[@]:7:1}
 MOONDAY=${OUT[@]:8:1}
 PRECIPITATION=${OUT[@]:9:1}
 PRESSURE=${OUT[@]:10:1}
-DAWN=$(toDate "${OUT[@]:11:1}")
-SUNRISE=$(toDate "${OUT[@]:12:1}")
-ZENITH=$(toDate "${OUT[@]:13:1}")
-SUNSET=$(toDate "${OUT[@]:14:1}")
-DUSK=$(toDate "${OUT[@]:15:1}")
+DAWN=$(toDate ${OUT[@]:11:1})
+SUNRISE=$(toDate ${OUT[@]:12:1})
+ZENITH=$(toDate ${OUT[@]:13:1})
+SUNSET=$(toDate ${OUT[@]:14:1})
+DUSK=$(toDate ${OUT[@]:15:1})
 UVINDEX=${OUT[@]:16:1}
 WEATHERCONDITION=${OUT[@]:17:3}
 
