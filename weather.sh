@@ -20,12 +20,10 @@ ICONS_DIR="$SCRIPT_DIR/weather-icons/22/"
 ########################################################################################################################
 ### CODE 
 
-# parse date format
-function toDate
+# parse time display to -l:M P
+function toTime
 {
-	echo -n "$(date -d $1 '+%-l'):"	# hour
-	echo -n "$(date -d $1 '+%M') "	# minute
-	echo -n "$(date -d $1 '+%P')"	# am/pm
+	echo "$(date -d $1 '+%-l:%M %P')"
 }
 
 # strip out + and -0 from temperature strings
@@ -49,11 +47,11 @@ MOONPHASE=${OUT[@]:7:1}
 MOONDAY=${OUT[@]:8:1}
 PRECIPITATION=${OUT[@]:9:1}
 PRESSURE=${OUT[@]:10:1}
-DAWN=$(toDate ${OUT[@]:11:1})
-SUNRISE=$(toDate ${OUT[@]:12:1})
-ZENITH=$(toDate ${OUT[@]:13:1})
-SUNSET=$(toDate ${OUT[@]:14:1})
-DUSK=$(toDate ${OUT[@]:15:1})
+DAWN=$(toTime ${OUT[@]:11:1})
+SUNRISE=$(toTime ${OUT[@]:12:1})
+ZENITH=$(toTime ${OUT[@]:13:1})
+SUNSET=$(toTime ${OUT[@]:14:1})
+DUSK=$(toTime ${OUT[@]:15:1})
 UVINDEX=${OUT[@]:16:1}
 WEATHERCONDITION=${OUT[@]:17:3}
 
