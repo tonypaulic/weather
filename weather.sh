@@ -27,28 +27,34 @@ function toDate
 	echo -n "$(date -d $1 '+%P')"	# am/pm
 }
 
-# get the weather data
-OUT=$(curl -s wttr.in/$LATITUDE,$LONGITUDE?m\&format="%x\n%c\n%h\n%t\n%f\n%w\n%l\n%m\n%M\n%p\n%P\n%D\n%S\n%z\n%s\n%d\n%u\n%C\n"&nonce=$RANDOM)
+# strip out + and -0 from temperature strings
+function strip
+{
+    echo "$1" | sed -e 's/+//g' | sed -e 's/^-0/0/g'
+}
+
+# get the weather data and put into an array
+OUT=( $(curl -s wttr.in/$LATITUDE,$LONGITUDE?m\&format="%x\n%c\n%h\n%t\n%f\n%w\n%l\n%m\n%M\n%p\n%P\n%D\n%S\n%z\n%s\n%d\n%u\n%C\n"&nonce=$RANDOM) )
 
 # parse the weather data
-WEATHERSYMBOL=$(echo $OUT | awk '{print $1}')
-WEATHERICON=$(echo $OUT | awk '{print $2}')
-HUMIDITY=$(echo $OUT | awk '{print $3}')
-TEMPERATURE=$(echo $OUT | awk '{print $4}' | sed -e 's/+//g' | sed -e 's/^-0/0/g' )
-FEELSLIKE=$(echo $OUT | awk '{print $5}' | sed -e 's/+//g' | sed -e 's/^-0/0/g' )
-WIND=$(echo $OUT | awk '{print $6}')
-LOCATION=$(echo $OUT | awk '{print $7}')
-MOONPHASE=$(echo $OUT | awk '{print $8}')
-MOONDAY=$(echo $OUT | awk '{print $9}')
-PRECIPITATION=$(echo $OUT | awk '{print $10}')
-PRESSURE=$(echo $OUT | awk '{print $11}')
-DAWN=$(toDate "$(echo $OUT | awk '{print $12}')")
-SUNRISE=$(toDate "$(echo $OUT | awk '{print $13}')")
-ZENITH=$(toDate "$(echo $OUT | awk '{print $14}')")
-SUNSET=$(toDate "$(echo $OUT | awk '{print $15}')")
-DUSK=$(toDate "$(echo $OUT | awk '{print $16}')")
-UVINDEX=$(echo $OUT | awk '{print $17}')
-WEATHERCONDITION=$(echo $OUT | awk '{print $18" "$19" "$20}')
+WEATHERSYMBOL=${OUT[@]:0:1}
+WEATHERICON=${OUT[@]:1:1}
+HUMIDITY=${OUT[@]:2:1}
+TEMPERATURE=$(strip "${OUT[@]:3:1}")
+FEELSLIKE=$(strip "${OUT[@]:4:1}")
+WIND=${OUT[@]:5:1}
+LOCATION=${OUT[@]:6:1}
+MOONPHASE=${OUT[@]:7:1}
+MOONDAY=${OUT[@]:8:1}
+PRECIPITATION=${OUT[@]:9:1}
+PRESSURE=${OUT[@]:10:1}
+DAWN=$(toDate "${OUT[@]:11:1}")
+SUNRISE=$(toDate "${OUT[@]:12:1}")
+ZENITH=$(toDate "${OUT[@]:13:1}")
+SUNSET=$(toDate "${OUT[@]:14:1}")
+DUSK=$(toDate "${OUT[@]:15:1}")
+UVINDEX=${OUT[@]:16:1}
+WEATHERCONDITION=${OUT[@]:17:3}
 
 # print debug info and exit if passing DEBUG parameter
 case $1 in
