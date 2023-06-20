@@ -7,8 +7,8 @@
 ########################################################################################################################
 ### CONFIGURATION - CHANGE THESE VALUES TO SUIT
 SITE="Whitby"               # Location text to display in tooltip
-LATITUDE="43.897"                      
-LONGITUDE="-78.951"
+LATITUDE="43.8800"                      
+LONGITUDE="-78.9406"
     #CLICK_COMMAND="xfce4-terminal -H --geometry=126x41 -T Weather -x curl -s wttr.in/$LATITUDE,$LONGITUDE"
 CLICK_COMMAND="xdotool key F12"
 
@@ -84,47 +84,47 @@ fi
 # parse which icon to use
 case $WEATHERSYMBOL in
     "?")    ICON=nodata.png ;;
-    "mm")   [[ $DAY -eq 1 ]] && ICON=lightcloud.png || ICON=lightcloud-night.png ;;
-    "=")    [[ $DAY -eq 1 ]] && ICON=fog.png || ICON=fog-night.png ;;
-    "///")  [[ $DAY -eq 1 ]] && ICON=rain.png || ICON=rain-night.png ;;
-    "//")   [[ $DAY -eq 1 ]] && ICON=rain.png || ICON=rain-night.png ;;
-    "**")   [[ $DAY -eq 1 ]] && ICON=snow.png || ICON=snow-night.png ;;
-    "*/*")  [[ $DAY -eq 1 ]] && ICON=snow.png || ICON=snow-night.png ;;
-    "/")    [[ $DAY -eq 1 ]] && ICON=lightrain.png || ICON=lightrain-night.png ;;
-    ".")    [[ $DAY -eq 1 ]] && ICON=lightrainsun.png || ICON=lightrainsun-night.png ;;
-    "x")    [[ $DAY -eq 1 ]] && ICON=sleet.png || ICON=sleet-night.png ;;
-    "x/")   [[ $DAY -eq 1 ]] && ICON=sleetthunder.png || ICON=sleetthunder-night.png ;;
-    "*")    [[ $DAY -eq 1 ]] && ICON=snow.png || ICON=snow-night.png ;;
-    "*/")   [[ $DAY -eq 1 ]] && ICON=snow.png || ICON=snow-night.png ;;
-    "m")    [[ $DAY -eq 1 ]] && ICON=partlycloud.png || ICON=partlycloud-night.png ;;
-    "o")    [[ $DAY -eq 1 ]] && ICON=sun.png || ICON=sun-night.png ;;
-    "/!/")  [[ $DAY -eq 1 ]] && ICON=rainthunder.png || ICON=rainthunder-night.png ;;
-    "!/")   [[ $DAY -eq 1 ]] && ICON=rainthunder.png || ICON=rainthunder-night.png ;;
-    "*!*")  [[ $DAY -eq 1 ]] && ICON=snowthunder.png || ICON=snowthunder-night.png ;;
-    "mmm")  [[ $DAY -eq 1 ]] && ICON=cloud.png || ICON=cloud-night.png ;;
+    "mm")   [[ $DAY -eq 1 ]] && ICON=lightcloud.png     || ICON=lightcloud-night.png    ;;
+    "=")    [[ $DAY -eq 1 ]] && ICON=fog.png            || ICON=fog-night.png           ;;
+    "///")  [[ $DAY -eq 1 ]] && ICON=rain.png           || ICON=rain-night.png          ;;
+    "//")   [[ $DAY -eq 1 ]] && ICON=rain.png           || ICON=rain-night.png          ;;
+    "**")   [[ $DAY -eq 1 ]] && ICON=snow.png           || ICON=snow-night.png          ;;
+    "*/*")  [[ $DAY -eq 1 ]] && ICON=snow.png           || ICON=snow-night.png          ;;
+    "/")    [[ $DAY -eq 1 ]] && ICON=lightrain.png      || ICON=lightrain-night.png     ;;
+    ".")    [[ $DAY -eq 1 ]] && ICON=lightrainsun.png   || ICON=lightrainsun-night.png  ;;
+    "x")    [[ $DAY -eq 1 ]] && ICON=sleet.png          || ICON=sleet-night.png         ;;
+    "x/")   [[ $DAY -eq 1 ]] && ICON=sleetthunder.png   || ICON=sleetthunder-night.png  ;;
+    "*")    [[ $DAY -eq 1 ]] && ICON=snow.png           || ICON=snow-night.png          ;;
+    "*/")   [[ $DAY -eq 1 ]] && ICON=snow.png           || ICON=snow-night.png          ;;
+    "m")    [[ $DAY -eq 1 ]] && ICON=partlycloud.png    || ICON=partlycloud-night.png   ;;
+    "o")    [[ $DAY -eq 1 ]] && ICON=sun.png            || ICON=sun-night.png           ;;
+    "/!/")  [[ $DAY -eq 1 ]] && ICON=rainthunder.png    || ICON=rainthunder-night.png   ;;
+    "!/")   [[ $DAY -eq 1 ]] && ICON=rainthunder.png    || ICON=rainthunder-night.png   ;;
+    "*!*")  [[ $DAY -eq 1 ]] && ICON=snowthunder.png    || ICON=snowthunder-night.png   ;;
+    "mmm")  [[ $DAY -eq 1 ]] && ICON=cloud.png          || ICON=cloud-night.png         ;;
 esac    
 
 # parse uvindex value into text
 case $UVINDEX in
-    [0-2])          UVSTR="Low" ;;
-    [3-5])          UVSTR="Moderate" ;;
-    [6-7])          UVSTR="High" ;;
-    [8-9]|10)       UVSTR="Very high" ;;
-    11|12)          UVSTR="Extreme" ;;
-    *)              UVSTR="Unknown" ;;
+    [0-2])          UVSTR="Low"         ;;
+    [3-5])          UVSTR="Moderate"    ;;
+    [6-7])          UVSTR="High"        ;;
+    [8-9]|10)       UVSTR="Very high"   ;;
+    11|12)          UVSTR="Extreme"     ;;
+    *)              UVSTR="Unknown"     ;;
 esac
 
 # parse moon phase in text
 case $MOONDAY in
-    [0])            MOONSTR="New Moon" ;;
-    [1-6])          MOONSTR="Waxing Crescent" ;;
-    7)              MOONSTR="First Quarter" ;;
-    [8-9]|1[0-5])   MOONSTR="Waxing Gibbous" ;;
-    16)             MOONSTR="Full Moon" ;;
-    1[7-9]|2[0-2])  MOONSTR="Waning Gibbous" ;;
-    23)             MOONSTR="Last Quarter" ;;
-    2[4-9])         MOONSTR="Waning Crescent" ;;
-    *)              MOONSTR="Unknown" ;;
+    [0])            MOONSTR="New Moon"          ;;
+    [1-6])          MOONSTR="Waxing Crescent"   ;;
+    7)              MOONSTR="First Quarter"     ;;
+    [8-9]|1[0-5])   MOONSTR="Waxing Gibbous"    ;;
+    16)             MOONSTR="Full Moon"         ;;
+    1[7-9]|2[0-2])  MOONSTR="Waning Gibbous"    ;;
+    23)             MOONSTR="Last Quarter"      ;;
+    2[4-9])         MOONSTR="Waning Crescent"   ;;
+    *)              MOONSTR="Unknown"           ;;
 esac
 
 ########################################################################################################################
