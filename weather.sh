@@ -12,7 +12,6 @@ LONGITUDE="-78.9406"
 CLICK_COMMAND="xdotool key F12"     # what executes when you click on plugin - options below
     #CLICK_COMMAND="xfce4-terminal -H --geometry=126x41 -T Weather -x curl -s wttr.in/$LATITUDE,$LONGITUDE"
 
-
 ########################################################################################################################
 ### SCRIPT GLOBALS
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
@@ -38,7 +37,6 @@ function separate
 {
     echo "$1" | sed -r 's/([0-9])([a-zA-Z])/\1 \2/g; s/([a-zA-Z])([0-9])/\1 \2/g'
 }
-
 
 # get the weather data and put into an array
 OUT=( $(curl -s wttr.in/$LATITUDE,$LONGITUDE?m\&format="%x\n%c\n%h\n%t\n%f\n%w\n%l\n%m\n%M\n%p\n%P\n%D\n%S\n%z\n%s\n%d\n%u\n%C\n"&nonce=$RANDOM) )
