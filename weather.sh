@@ -33,6 +33,13 @@ function strip
     echo "$1" | sed -e 's/+//g' | sed -e 's/^-0/0/g'
 }
 
+# add a space between measurement and unit
+function separate
+{
+    echo "$1" | sed -r 's/([0-9])([a-zA-Z])/\1 \2/g; s/([a-zA-Z])([0-9])/\1 \2/g'
+}
+
+
 # get the weather data and put into an array
 OUT=( $(curl -s wttr.in/$LATITUDE,$LONGITUDE?m\&format="%x\n%c\n%h\n%t\n%f\n%w\n%l\n%m\n%M\n%p\n%P\n%D\n%S\n%z\n%s\n%d\n%u\n%C\n"&nonce=$RANDOM) )
 
@@ -42,12 +49,12 @@ WEATHERICON=${OUT[@]:1:1}
 HUMIDITY=${OUT[@]:2:1}
 TEMPERATURE=$(strip ${OUT[@]:3:1})
 FEELSLIKE=$(strip ${OUT[@]:4:1})
-WIND=${OUT[@]:5:1}
+WIND=$(separate ${OUT[@]:5:1})
 LOCATION=${OUT[@]:6:1}
 MOONPHASE=${OUT[@]:7:1}
 MOONDAY=${OUT[@]:8:1}
-PRECIPITATION=${OUT[@]:9:1}
-PRESSURE=${OUT[@]:10:1}
+PRECIPITATION=$(separate ${OUT[@]:9:1})
+PRESSURE=$(separate ${OUT[@]:10:1})
 DAWN=$(toTime ${OUT[@]:11:1})
 SUNRISE=$(toTime ${OUT[@]:12:1})
 ZENITH=$(toTime ${OUT[@]:13:1})
