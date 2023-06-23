@@ -3,12 +3,22 @@
 # requires: curl & weather icons (https://github.com/kevin-hanselman/xfce4-weather-mono-icons)
 # Note: depending on the font your are using, you may need to adjust the number of "\t" (tabs) 
 #       in the tooltip string to get the readings to line up properly.
+# Script calls:
+#   weather.sh DEBUG                        # for debug output
+#   weather.sh SITENAME LATITUDE LONGITUDE  # regular use
 
 ########################################################################################################################
 ### CONFIGURATION - CHANGE THESE VALUES TO SUIT
-SITE="Whitby"                       # Location text to display in tooltip
-LATITUDE="43.8800"                      
-LONGITUDE="-78.9406"
+#
+# ensure 3 parameters are passed to script:
+#   1 = Site/City name - to be displayed in tooltip
+#   2 = Latitude coordinate
+#   3 = Longitude coordinate
+SITE="$1"
+LATITUDE="$2"
+LONGITUDE="$3"
+
+UNIT="m"                            # options: u=USCS, m=metric, M=metric with wind speed in m/s
 CLICK_COMMAND="xdotool key F12"     # what executes when you click on plugin - options below
     #CLICK_COMMAND="xfce4-terminal -H --geometry=126x41 -T Weather -x curl -s wttr.in/$LATITUDE,$LONGITUDE"
 
@@ -39,7 +49,7 @@ function separate
 }
 
 # get the weather data and put into an array
-OUT=( $(curl -s wttr.in/$LATITUDE,$LONGITUDE?m\&format="%x\n%c\n%h\n%t\n%f\n%w\n%l\n%m\n%M\n%p\n%P\n%D\n%S\n%z\n%s\n%d\n%u\n%C\n"&nonce=$RANDOM) )
+OUT=( $(curl -s wttr.in/$LATITUDE,$LONGITUDE?$UNIT\&format="%x\n%c\n%h\n%t\n%f\n%w\n%l\n%m\n%M\n%p\n%P\n%D\n%S\n%z\n%s\n%d\n%u\n%C\n"\&nonce=$RANDOM) )
 
 # parse the weather data
 WEATHERSYMBOL=${OUT[@]:0:1}
