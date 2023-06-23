@@ -19,8 +19,8 @@ LATITUDE="$2"
 LONGITUDE="$3"
 
 UNIT="m"                            # options: u=USCS, m=metric, M=metric with wind speed in m/s
-CLICK_COMMAND="xdotool key F12"     # what executes when you click on plugin - options below
-    #CLICK_COMMAND="xfce4-terminal -H --geometry=126x41 -T Weather -x curl -s wttr.in/$LATITUDE,$LONGITUDE"
+#CLICK_COMMAND="xdotool key F12"     # what executes when you click on plugin - options below
+CLICK_COMMAND="xfce4-terminal -H --geometry=126x41 -T Weather -x curl -s wttr.in/$LATITUDE,$LONGITUDE"
 
 ########################################################################################################################
 ### SCRIPT GLOBALS
